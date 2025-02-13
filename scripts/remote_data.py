@@ -1,3 +1,5 @@
+# Currently Not a working module!! DO NOT USE
+
 import os
 import platform
 import subprocess
@@ -9,7 +11,7 @@ try:
 except ImportError:
     in_colab = False
 
-def mount_remote_data(local_mount, remote_user, remote_host, remote_path):
+def mount_remote_data(local_mount, remote_user, remote_host, remote_path, password):
     """
     Mounts a remote dataset directory using SSHFS.
 
@@ -33,13 +35,13 @@ def mount_remote_data(local_mount, remote_user, remote_host, remote_path):
         
         # Install SSHFS in Colab if not already installed
         if subprocess.run(["which", "sshfs"], capture_output=True).returncode != 0:
-            subprocess.run("apt-get update && apt-get install -y sshfs", shell=True, check=True)
+            subprocess.run("apt-get update && apt-get install -y sshfs sshpass", shell=True, check=True)
         
         print("✅ SSHFS installed. Attempting to mount remote dataset...")
 
         # Mount the remote directory
-        sshfs_cmd = f"sshfs {remote_user}@{remote_host}:{remote_path} {local_mount} -o reconnect,allow_other"
-
+        sshfs_cmd = f"sshpass -p '{password}' sshfs {remote_user}@{remote_host}:{remote_path} {local_mount} -o reconnect,allow_other -vvv"
+        
     elif system == "Darwin":  # macOS
         print("🔹 Detected macOS. Checking for SSHFS...")
 
@@ -83,7 +85,11 @@ def mount_remote_data(local_mount, remote_user, remote_host, remote_path):
 
     # Execute SSHFS mount command
     try:
+        print(sshfs_cmd)
         subprocess.run(sshfs_cmd, shell=True, check=True)
         print(f"✅ Successfully mounted {remote_host}:{remote_path} to {local_mount}")
     except subprocess.CalledProcessError as e:
-        print(f"❌ Failed to mount remote dataset: {e}")
+        print(f"❌ Failed to mount remote dataset!")
+        print(f"📄 STDOUT: {e.stdout}")
+        print(f"📄 STDERR: {e.stderr}")
+        print(f"🔍 Exit Code: {e.returncode}")
