@@ -30,3 +30,22 @@ Here's a quick breakdown of the repository contents:
 
 ---
 
+## 🚀 Getting Started  
+
+### 🔹 **1. Clone the Repository**
+```bash
+git clone https://github.com/your-org/ml-project-template.git
+cd ml-project-template
+
+
+### 🛠 Setting Up the Dataset (GPU Server)
+To avoid hardcoding dataset paths, create a **symbolic link** inside `data/` pointing to your dataset location:
+
+```bash
+ln -s /absolute/path/to/dataset /path/to/ml-project-template/data/dataset_name
+
+| **Where You're Running the Notebook** | **Dataset Setup** |
+|--------------------------------------|------------------|
+| **GPU Server (Jupyter Notebook Server)** | Use a **symlink** (`ln -s`) to point to the real dataset. |
+| **Local Machine (VS Code, Jupyter, etc.)** | Create a **small sample dataset** inside `data/`. |
+| **Google Colab (Cloud)** | Upload a sample dataset to **Google Drive** inside `data/`. |
