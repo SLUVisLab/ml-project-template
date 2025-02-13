@@ -19,9 +19,6 @@ Here's a quick breakdown of the repository contents:
 | `README.md` | 📄 Documentation for understanding and using this template. |
 | `.gitignore` | 🚫 Ensures that large files, logs, and unnecessary cache files are not committed to Git. |
 | `requirements.txt` | 📦 Lists all required dependencies (for `pip install -r requirements.txt`). |
-
-| **Folders** | **Purpose** |
-|------------|-------------|
 | `scripts/` | 🛠 Contains reusable Python scripts for preprocessing, training, and evaluation. |
 | `results/` | 📊 Stores logs, metrics, and experiment outputs. |
 | `models/` | 🏗 Stores trained models and checkpoints. |
@@ -36,7 +33,7 @@ Here's a quick breakdown of the repository contents:
 ```bash
 git clone https://github.com/your-org/ml-project-template.git
 cd ml-project-template
-
+```
 
 ### 🛠 Setting Up the Dataset (GPU Server)
 To avoid hardcoding dataset paths, create a **symbolic link** inside `data/` pointing to your dataset location:
