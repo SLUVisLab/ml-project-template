@@ -40,6 +40,7 @@ To avoid hardcoding dataset paths, create a **symbolic link** inside `data/` poi
 
 ```bash
 ln -s /absolute/path/to/dataset /path/to/ml-project-template/data/dataset_name
+```
 
 | **Where You're Running the Notebook** | **Dataset Setup** |
 |--------------------------------------|------------------|
